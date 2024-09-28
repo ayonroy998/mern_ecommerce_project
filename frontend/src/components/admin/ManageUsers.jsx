@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 
 
-const url = import.meta.env.VITE_API_URL;
+const url = "https://mern-ecommerce-techproject.onrender.com";
 const ManageUsers = () => {
   const [users, setUsers] = useState([]); // Initialize as an empty array
   const [editingUser, setEditingUser] = useState(null);

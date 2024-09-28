@@ -19,7 +19,7 @@ import EditReviewForm from "./EditReviewForm";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const url = import.meta.env.VITE_API_URL;
+  const url = "https://mern-ecommerce-techproject.onrender.com";
 
   const [product, setProduct] = useState();
   const [selectedImage, setSelectedImage] = useState(null);

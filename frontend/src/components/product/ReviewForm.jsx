@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ReviewForm = ({ onReviewSubmit }) => {
   const { id } = useParams();
-  const url = import.meta.env.VITE_API_URL;
+  const url = "https://mern-ecommerce-techproject.onrender.com";
 
   const [rating, setRating] = useState(1);
   const [hover, setHover] = useState(null);
