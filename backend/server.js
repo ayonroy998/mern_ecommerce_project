@@ -19,7 +19,7 @@ app.use(bodyparser.json());
 
 app.use(
   cors({
-    origin: ["https://thriving-malabi-f9e261.netlify.app","https://luminous-naiad-97899d.netlify.app"],
+    origin: "https://thriving-malabi-f9e261.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -29,15 +29,15 @@ app.use(cookieParser());
 app.use(express.json());
 
 //user Router
-app.use("/user", userRouter);
+app.use("/api/user", userRouter);
 //product router
-app.use("/product", productRouter);
+app.use("/api/product", productRouter);
 //cart router
-app.use("/cart", cartRouter);
+app.use("/api/cart", cartRouter);
 //address router
-app.use("/address", addressRouter);
+app.use("/api/address", addressRouter);
 //review router
-app.use("/review", reviewRouter);
+app.use("/api/review", reviewRouter);
 
 mongoose
 .connect(process.env.REACT_APP_MONGODB_URL, { dbName: process.env.REACT_APP_DB_NAME})
