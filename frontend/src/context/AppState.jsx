@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AppState = ({ children }) => {
   const url = import.meta.env.VITE_API_URL;
-  console.log(url);
 
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState([]);
@@ -27,7 +26,7 @@ const AppState = ({ children }) => {
         withCredentials: true,
       });
 
-      console.log(response.data);
+      //console.log(response.data);
       setProducts(response.data);
       setFilterData(response.data);
       userProfile();
@@ -99,7 +98,7 @@ const AppState = ({ children }) => {
       });
 
       // Successful login
-      console.log("user login", response.data);
+      //console.log("user login", response.data);
       setToken(response.data.token);
       setIsAuthenti(true); // User is authenticated
       localStorage.setItem("token", response.data.token);
@@ -151,7 +150,7 @@ const AppState = ({ children }) => {
       },
       withCredentials: true,
     });
-    console.log("user profile", response.data);
+    //console.log("user profile", response.data);
     setUser(response.data.user);
   };
 
@@ -177,7 +176,7 @@ const AppState = ({ children }) => {
       }
     );
     setReload(!reload);
-    //console.log("my cart",response);
+    ////console.log("my cart",response);
     toast.success(response.data.message, {
       position: "top-center",
       autoClose: 1500,
@@ -216,7 +215,7 @@ const AppState = ({ children }) => {
       theme: "dark",
       transition: Bounce,
     });
-    //console.log("my cart",response);
+    ////console.log("my cart",response);
   };
 
   //get user cart
@@ -228,7 +227,7 @@ const AppState = ({ children }) => {
       },
       withCredentials: true,
     });
-    console.log("user cart", response.data.cart);
+    //console.log("user cart", response.data.cart);
     setCart(response.data.cart);
   };
 
@@ -242,7 +241,7 @@ const AppState = ({ children }) => {
       withCredentials: true,
     });
     setReload(!reload);
-    console.log("remove item from cart", response);
+    //console.log("remove item from cart", response);
     toast.success(response.data.message, {
       position: "top-center",
       autoClose: 1500,
@@ -300,7 +299,7 @@ const AppState = ({ children }) => {
         withCredentials: true,
       }
     );
-    console.log("add address", response.data);
+    //console.log("add address", response.data);
     toast.success(response.data.message, {
       position: "top-center",
       autoClose: 1500,
@@ -324,7 +323,7 @@ const AppState = ({ children }) => {
       },
       withCredentials: true,
     });
-    console.log("get user address", response.data.newAddress);
+    //console.log("get user address", response.data.newAddress);
 
     setUserAddress(response.data.newAddress);
     return response.data;
