@@ -3,7 +3,7 @@ import axios from "axios";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 
-const url = "https://mern-ecommerce-techproject.onrender.com";
+const url = import.meta.env.VITE_API_URL;
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);

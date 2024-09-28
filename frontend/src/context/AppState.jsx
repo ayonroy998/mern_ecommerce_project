@@ -5,7 +5,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AppState = ({ children }) => {
-  const url = "https://mern-ecommerce-techproject.onrender.com";
+  const url = import.meta.env.VITE_API_URL;
   console.log(url);
 
   const [products, setProducts] = useState([]);
