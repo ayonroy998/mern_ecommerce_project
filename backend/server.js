@@ -19,7 +19,7 @@ app.use(bodyparser.json());
 
 app.use(
   cors({
-    origin: "https://thriving-malabi-f9e261.netlify.app",
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
