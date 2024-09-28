@@ -19,7 +19,7 @@ app.use(bodyparser.json());
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://luminous-naiad-97899d.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -29,15 +29,15 @@ app.use(cookieParser());
 app.use(express.json());
 
 //user Router
-app.use("https://mern-ecommerce-techproject.onrender.com/api/user", userRouter);
+app.use("/api/user", userRouter);
 //product router
-app.use("https://mern-ecommerce-techproject.onrender.com/api/product", productRouter);
+app.use("/api/product", productRouter);
 //cart router
-app.use("https://mern-ecommerce-techproject.onrender.com/api/cart", cartRouter);
+app.use("/api/cart", cartRouter);
 //address router
-app.use("https://mern-ecommerce-techproject.onrender.com/api/address", addressRouter);
+app.use("/api/address", addressRouter);
 //review router
-app.use("https://mern-ecommerce-techproject.onrender.com/api/review", reviewRouter);
+app.use("/api/review", reviewRouter);
 
 mongoose
 .connect(process.env.REACT_APP_MONGODB_URL, { dbName: process.env.REACT_APP_DB_NAME})
