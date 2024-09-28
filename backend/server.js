@@ -11,7 +11,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv"; 
 
 dotenv.config(); 
-console.log(process.env.MY_TOKEN_EXPIRE);
+console.log(process.env.REACT_APP_MY_TOKEN_EXPIRE);
 
 const app = express();
 
@@ -40,9 +40,9 @@ app.use("/api/address", addressRouter);
 app.use("/api/review", reviewRouter);
 
 mongoose
-.connect(process.env.MONGODB_URL, { dbName: process.env.DB_NAME})
+.connect(process.env.REACT_APP_MONGODB_URL, { dbName: process.env.REACT_APP_DB_NAME})
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-const port= process.env.API_PORT || 5000;
+const port= process.env.REACT_APP_API_PORT || 5000;
 app.listen(port, () => console.log(`server is listening on port!`));

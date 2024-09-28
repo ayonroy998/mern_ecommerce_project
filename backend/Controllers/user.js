@@ -43,8 +43,8 @@ export const login = async (req, res) => {
       return res.json({ message: "Invalid password", success: false });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.MY_TOKEN, {
-      expiresIn: process.env.MY_TOKEN_EXPIRE,
+    const token = jwt.sign({ id: user._id }, process.env.REACT_APP_MY_TOKEN, {
+      expiresIn: process.env.REACT_APP_MY_TOKEN_EXPIRE,
     });
     return res.json({
       message: `Login successful! welcome ${user.userName}`,
