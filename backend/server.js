@@ -29,15 +29,15 @@ app.use(cookieParser());
 app.use(express.json());
 
 //user Router
-app.use("/api/user", userRouter);
+app.use("/user", userRouter);
 //product router
-app.use("/api/product", productRouter);
+app.use("/product", productRouter);
 //cart router
-app.use("/api/cart", cartRouter);
+app.use("/cart", cartRouter);
 //address router
-app.use("/api/address", addressRouter);
+app.use("/address", addressRouter);
 //review router
-app.use("/api/review", reviewRouter);
+app.use("/review", reviewRouter);
 
 mongoose
 .connect(process.env.REACT_APP_MONGODB_URL, { dbName: process.env.REACT_APP_DB_NAME})
