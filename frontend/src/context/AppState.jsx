@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AppState = ({ children }) => {
   const url = import.meta.env.VITE_API_URL;
+  console.log(url);
 
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState([]);
