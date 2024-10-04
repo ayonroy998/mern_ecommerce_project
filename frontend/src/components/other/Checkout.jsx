@@ -6,7 +6,6 @@ import Tableproduct from "./Tableproduct";
 import { Link } from "react-router-dom";
 
 const url = import.meta.env.VITE_API_URL;
-console.log(url);
 
 const Checkout = () => {
   const { cart, userAddress, user, token } = useContext(AppContext);
