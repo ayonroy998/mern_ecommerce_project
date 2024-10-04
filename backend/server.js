@@ -19,7 +19,7 @@ app.use(bodyparser.json());
 
 app.use(
   cors({
-    origin: "https://glittering-malabi-a07a1c.netlify.app",
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
