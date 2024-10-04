@@ -11,6 +11,7 @@ const Checkout = () => {
   const { cart, userAddress, user, token } = useContext(AppContext);
   const [qty, setQty] = useState(0);
   const [price, setPrice] = useState(0);
+  console.log("user token",token);
 
   useEffect(() => {
     let qty = 0;
@@ -49,7 +50,6 @@ const Checkout = () => {
           },
         }
       );
-      console.log(token);
       console.log("Order Response:", orderResponse.data);
 
       const approvalLink = orderResponse.data.links.find(
