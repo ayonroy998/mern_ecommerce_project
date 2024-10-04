@@ -16,7 +16,10 @@ import AdminDashboard from "./components/admin/AdminDashboard";
 import ManageProducts from "./components/admin/ManageProducts";
 import ManageUsers from "./components/admin/ManageUsers";
 import { ToastContainer, toast } from "react-toastify";
+import ContactUs from "./components/other/ContactUs";
 import "react-toastify/dist/ReactToastify.css";
+import ManageOrders from "./components/admin/ManageOrders";
+import TrackOrder from "./components/other/TrackOrder";
 
 const App = () => {
   return (
@@ -37,6 +40,9 @@ const App = () => {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/products" element={<ManageProducts />} />
         <Route path="/admin/users" element={<ManageUsers />} />
+        <Route path="/admin/orders" element={<ManageOrders />} />
+        <Route path="/trackorder" element={<TrackOrder />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
       <Footer />
     </Router>

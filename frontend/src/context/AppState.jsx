@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AppState = ({ children }) => {
   const url = import.meta.env.VITE_API_URL;
-  
 
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState([]);
@@ -40,7 +39,6 @@ const AppState = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log(token);
       setToken(token);
       setIsAuthenti(true);
     } else {
@@ -70,7 +68,7 @@ const AppState = ({ children }) => {
       theme: "dark",
       transition: Bounce,
     });
-    return response.data; // response er value k return kore signup.jsx file a result a store korbo
+    return response.data;
   };
 
   //loginuser
@@ -102,7 +100,7 @@ const AppState = ({ children }) => {
       // Successful login
       console.log("user login", response.data);
       setToken(response.data.token);
-      setIsAuthenti(true); // User is authenticated
+      setIsAuthenti(true);
       localStorage.setItem("token", response.data.token);
 
       return response.data;
@@ -120,7 +118,7 @@ const AppState = ({ children }) => {
         transition: Bounce,
       });
 
-      setIsAuthenti(false); // Ensure user is not authenticated
+      setIsAuthenti(false);
     }
   };
 
@@ -325,9 +323,9 @@ const AppState = ({ children }) => {
       },
       withCredentials: true,
     });
-    console.log("get user address", response.data.newAddress);
 
     setUserAddress(response.data.newAddress);
+    console.log("get user address", response.data.newAddress);
     return response.data;
   };
 
@@ -349,6 +347,7 @@ const AppState = ({ children }) => {
         setPriceRange,
         addToCart,
         cart,
+        setCart,
         decreaseQty,
         removeFromCart,
         removeAllFromCart,

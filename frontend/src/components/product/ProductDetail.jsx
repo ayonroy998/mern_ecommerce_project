@@ -98,8 +98,8 @@ const ProductDetail = () => {
         },
         withCredentials: true,
       });
-      fetchReviews(); // Refresh the reviews after update
-      setEditingReviewId(null); // Close the edit form
+      fetchReviews();
+      setEditingReviewId(null);
     } catch (error) {
       console.error("Failed to update review:", error);
     }
@@ -111,14 +111,43 @@ const ProductDetail = () => {
   {
     displayedReviews.length > 0 ? (
       displayedReviews.map((review) => {
-        // Log the review ID and user ID
-        //console.log("Review ID:", review._id); // Print review ID
         console.log("Review User ID:", review.user); //
       })
     ) : (
       <p>No reviews yet.</p>
     );
   }
+
+  const handleBuyNow = async () => {
+    try {
+      const response = await axios.post(
+        `${url}/payment/checkout`,
+        {
+          amount: product.price,
+          cartItems: [{ productId: product._id, qty: 1 }],
+          userShipping: user?.shippingAddress,
+          userId: user._id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      // Redirect the user to the PayPal approval page
+      const approvalLink = response.data.links.find(
+        (link) => link.rel === "approve"
+      );
+      if (approvalLink) {
+        window.location.href = approvalLink.href;
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
+  };
 
   return (
     <>
@@ -198,10 +227,10 @@ const ProductDetail = () => {
               smallImage: {
                 alt: "Selected Product",
                 isFluidWidth: true,
-                src: selectedImage || product?.image,
+                src: selectedImage || product?.image[0],
               },
               largeImage: {
-                src: selectedImage || product?.image,
+                src: selectedImage || product?.image[0],
                 width: 500,
                 height: 900,
               },
@@ -272,7 +301,7 @@ const ProductDetail = () => {
             >
               <FaCartShopping /> ADD TO CART
             </button>
-            <button className="btnss">
+            <button className="btnss" onClick={handleBuyNow}>
               <MdElectricBolt /> BUY NOW
             </button>
           </div>
@@ -299,21 +328,15 @@ const ProductDetail = () => {
               }}
             >
               <div
-                className="review-container"
+                className="review-container d-flex justify-content-between align-items-center"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
                   marginBottom: "10px",
                 }}
               >
                 {/* Review and Rating Section */}
                 <div
-                  className="review-content"
+                  className="review-content d-flex flex-column text-align-center"
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    textAlign: "center",
                     flex: "1",
                   }}
                 >
@@ -326,10 +349,8 @@ const ProductDetail = () => {
                 </div>
 
                 <div
-                  className="review-actions"
+                  className="review-actions d-flex flex-column "
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
                     alignItems: "flex-end",
                     marginLeft: "20px",
                   }}

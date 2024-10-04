@@ -19,15 +19,12 @@ const ManageProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          `${url}/product/all`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
+        const response = await axios.get(`${url}/product/all`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -53,18 +50,15 @@ const ManageProducts = () => {
     }
   };
 
-  // Handle starting to edit a product
   const handleEdit = (product) => {
     setEditingProduct(product);
     setNewProductData(product);
   };
 
-  // Handle saving a new or edited product
   const handleSave = async () => {
     try {
       let response;
       if (editingProduct) {
-        // Update existing product
         response = await axios.put(
           `${url}/product/${editingProduct._id}`,
           newProductData,
@@ -80,17 +74,12 @@ const ManageProducts = () => {
         );
         setProducts(updatedProducts);
       } else {
-        // Add new product
-        response = await axios.post(
-          `${url}/product/add`,
-          newProductData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
+        response = await axios.post(`${url}/product/add`, newProductData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
         setProducts([...products, response.data.product]);
       }
       setEditingProduct(null);
@@ -107,35 +96,34 @@ const ManageProducts = () => {
     }
   };
 
-  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProductData({ ...newProductData, [name]: value });
   };
 
   return (
-    <div>
+    <div className="manage-for-sm">
       <h2>Manage Products</h2>
       <table className="table table-bordered border-primary my-5 container">
         <thead className="text-center">
           <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Image</th>
-            <th>Category</th>
-            <th>Actions</th>
+            <th className="bg-dark text-white">Title</th>
+            <th className="bg-dark text-white">Description</th>
+            <th className="bg-dark text-white">Price</th>
+            <th className="bg-dark text-white">Quantity</th>
+            <th className="bg-dark text-white">Image</th>
+            <th className="bg-dark text-white">Category</th>
+            <th className="bg-dark text-white">Actions</th>
           </tr>
         </thead>
         <tbody className="text-center">
           {products.map((product) => (
             <tr key={product._id}>
-              <td>{product.title}</td>
-              <td>{product.description}</td>
-              <td> &#8377;{product.price}</td>
-              <td>{product.qty}</td>
-              <td>
+              <td className="bg-dark text-white">{product.title}</td>
+              <td className="bg-dark text-white">{product.description}</td>
+              <td className="bg-dark text-white"> &#8377;{product.price}</td>
+              <td className="bg-dark text-white">{product.qty}</td>
+              <td className="bg-dark text-white">
                 {product.image.map((imgUrl, index) => (
                   <img
                     className="mr-1"
@@ -146,8 +134,8 @@ const ManageProducts = () => {
                   />
                 ))}
               </td>
-              <td>{product.category}</td>
-              <td>
+              <td className="bg-dark text-white">{product.category}</td>
+              <td className="bg-dark text-white">
                 <button
                   onClick={() => handleEdit(product)}
                   className="btn rounded text-white border-0  mb-2 fw-bold p-1"
@@ -175,7 +163,7 @@ const ManageProducts = () => {
       </table>
 
       <div
-        className="container edit-user-form my-5 rounded bg-white pt-2 pb-4 px-2 pl-4"
+        className="container edit-user-form my-5 rounded bg-dark pt-2 pb-4 px-2 pl-4 text-white"
         style={{
           width: "400px",
           height: "475px",
@@ -184,7 +172,7 @@ const ManageProducts = () => {
         <h4 className="text-center">
           {editingProduct ? "Edit Product" : "Add Product"}
         </h4>
-        <form onSubmit={(e) => e.preventDefault()} className="offset-1 my-3">
+        <form onSubmit={(e) => e.preventDefault()} className="my-3">
           <div className="form-group">
             <label>
               <b>Title</b>
@@ -240,11 +228,11 @@ const ManageProducts = () => {
             <input
               type="text"
               name="image"
-              value={newProductData.image.join(", ")} // Join array to show as a string
+              value={newProductData.image.join(", ")}
               onChange={(e) =>
                 setNewProductData({
                   ...newProductData,
-                  image: e.target.value.split(",").map((url) => url.trim()), // Split and trim the URLs
+                  image: e.target.value.split(",").map((url) => url.trim()),
                 })
               }
               className="form-control"

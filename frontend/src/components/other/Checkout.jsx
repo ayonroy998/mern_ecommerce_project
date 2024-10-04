@@ -1,17 +1,76 @@
 import React, { useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { useContext } from "react";
+import axios from "axios";
 import Tableproduct from "./Tableproduct";
+import { Link } from "react-router-dom";
+
+const url = import.meta.env.VITE_API_URL;
 
 const Checkout = () => {
-  const { cart, userAddress } = useContext(AppContext);
+  const { cart, userAddress, user, token } = useContext(AppContext);
+  const [qty, setQty] = useState(0);
+  const [price, setPrice] = useState(0);
 
-  console.log("checkout add", userAddress);
+  useEffect(() => {
+    let qty = 0;
+    let price = 0;
+    cart?.items?.forEach((item) => {
+      qty += item.qty;
+      price += item.price;
+    });
+    setQty(qty);
+    setPrice(price);
+  }, [cart]);
+
+  const handlePayment = async () => {
+    console.log("Preparing to handle payment...");
+    console.log("Cart contents:", cart);
+
+    if (!cart || !Array.isArray(cart.items)) {
+      console.error("Cart is not defined or items is not an array");
+      return;
+    }
+
+    try {
+      const orderResponse = await axios.post(
+        `${url}/payment/checkout`,
+        {
+          amount: price,
+          items: cart.items,
+          userShipping: userAddress,
+          userId: user._id,
+          userName: user.userName,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Auth: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Order Response:", orderResponse.data);
+
+      const approvalLink = orderResponse.data.links.find(
+        (link) => link.rel === "approve"
+      );
+
+      if (approvalLink) {
+        // Redirect the user to the PayPal approval URL
+        window.location.href = approvalLink.href;
+      } else {
+        console.error("Approval URL not found");
+      }
+    } catch (error) {
+      console.error("Error during payment:", error);
+    }
+  };
 
   return (
     <>
-      <div className="container" style={{ marginTop: "100px" }}>
-        <h2 className="text-center">Order Summery</h2>
+      <div className="container con-for-sm" style={{ marginTop: "100px" }}>
+        <h2 className="text-center">Order Summary</h2>
 
         <table className="table table-bordered border-primary">
           <thead>
@@ -60,7 +119,15 @@ const Checkout = () => {
       </div>
 
       <div className="container text-center">
-        <button className="btn my-5 btn-lg">Procced to pay</button>
+        <button className="btn my-4 btn-lg" onClick={handlePayment}>
+          Proceed to Pay
+        </button>
+      </div>
+
+      <div className="container text-center">
+        <Link to={"/trackorder"}>
+          <button className="btn my-2 btn-lg">Track your order :)</button>
+        </Link>
       </div>
     </>
   );

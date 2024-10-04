@@ -42,7 +42,7 @@ const Cart = () => {
           </>
         ) : (
           <>
-            <div className="text-center" style={{ marginTop: "100px" }}>
+            <div className="text-center" style={{ marginTop: "120px" }}>
               <button className="btn  mx-3">Total Qty :-{qty}</button>
               <button className="btn  mx-3">Total Price :-{price}</button>
             </div>

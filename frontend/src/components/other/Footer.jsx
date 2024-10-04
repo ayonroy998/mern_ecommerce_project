@@ -1,4 +1,6 @@
 import React from "react";
+import ContactUs from "./ContactUs";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -23,16 +25,13 @@ const Footer = () => {
             <h4 style={{ marginRight: "320px" }}>Quick Links</h4>
             <ul className="link">
               <li>
-                <a href="#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">Products</a>
+                <Link to="/">Products</Link>
               </li>
               <li>
-                <a href="#">Contact Us</a>
-              </li>
-              <li>
-                <a href="#">FAQs</a>
+                <Link to="/contact">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -44,18 +43,18 @@ const Footer = () => {
           <div className="footer-sec-link">
             <h4>Follow Us</h4>
             <div className="social-icons d-flex" style={{ gap: "10px" }}>
-              <a href="#">
+              <Link to ="#">
                 <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#">
+              </Link>
+              <Link to="#">
                 <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
+              </Link>
+              <Link to="#">
                 <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#">
+              </Link>
+              <Link to="#">
                 <i className="fab fa-linkedin-in"></i>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

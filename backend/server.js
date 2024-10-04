@@ -8,10 +8,10 @@ import reviewRouter from "./Routes/review.js";
 import bodyparser from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv"; 
+import paymentRouter from "./Routes/payment.js";
+import dotenv from "dotenv";
 
-dotenv.config(); 
-console.log(process.env.REACT_APP_MY_TOKEN_EXPIRE);
+dotenv.config();
 
 const app = express();
 
@@ -38,11 +38,15 @@ app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
 //review router
 app.use("/api/review", reviewRouter);
+//payment router
+app.use("/api/payment", paymentRouter);
 
 mongoose
-.connect(process.env.REACT_APP_MONGODB_URL, { dbName: process.env.REACT_APP_DB_NAME})
+  .connect(process.env.REACT_APP_MONGODB_URL, {
+    dbName: process.env.REACT_APP_DB_NAME,
+  })
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-const port= process.env.REACT_APP_API_PORT || 5000;
+const port = process.env.REACT_APP_API_PORT || 5000;
 app.listen(port, () => console.log(`server is listening on port!`));

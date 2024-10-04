@@ -182,10 +182,10 @@ const TopSellProduct = () => {
   return (
     <>
       <div
-        className="card tp-sell-sm"
+        className="tp-sell-sm"
         style={{
           width: "1515px",
-          marginTop: "20px",
+          marginTop: "60px",
           height: "auto",
           marginLeft: "10px",
         }}
@@ -207,7 +207,7 @@ const TopSellProduct = () => {
               <div key={product._id} className="top-sell-container">
                 <div
                   className="card text-center tp-card-sm"
-                  style={{ marginLeft: "20px" }}
+                  style={{ marginLeft: "20px",height:"170px" }}
                 >
                   <Link
                     to={`/product/${product._id}`}
@@ -221,8 +221,8 @@ const TopSellProduct = () => {
                     />
                   </Link>
                   <div
-                    className="card-body p-0 mt-2 tp-body-sm"
-                    style={{ marginTop: "20px" }}
+                    className="card-body p-0 tp-body-sm"
+                     style={{color:"white"}}
                   >
                     <p className="card-title fw-bold fs-6">{product.title}</p>
                   </div>

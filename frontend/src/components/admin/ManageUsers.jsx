@@ -3,10 +3,9 @@ import axios from "axios";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 
-
 const url = import.meta.env.VITE_API_URL;
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]); // Initialize as an empty array
+  const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [newUserData, setNewUserData] = useState({
     name: "",
@@ -14,7 +13,6 @@ const ManageUsers = () => {
     role: "",
   });
 
-  // Fetch user data from the backend when the component mounts
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -80,7 +78,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <div style={{ marginTop: "100px" }}>
+    <div className="manage-for-sm" style={{ marginTop: "100px" }}>
       <h2 style={{ marginLeft: "10px", fontFamily: "sans-serif" }}>
         Manage Users
       </h2>
@@ -90,18 +88,18 @@ const ManageUsers = () => {
       >
         <thead className="text-center">
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
+            <th className="bg-dark text-white">Name</th>
+            <th className="bg-dark text-white"> Email</th>
+            <th className="bg-dark text-white">Actions</th>
           </tr>
         </thead>
         <tbody className="text-center">
           {users.map((user) => (
             <tr key={user._id}>
-              <td>{user.userName}</td>
-              <td>{user.email}</td>
+              <td className="bg-dark text-white">{user.userName}</td>
+              <td className="bg-dark text-white">{user.email}</td>
 
-              <td>
+              <td className="bg-dark text-white">
                 <button
                   onClick={() => handleEdit(user)}
                   className="btn btn-primary mx-3"

@@ -13,6 +13,9 @@ const AdminDashboard = () => {
           <li>
             <NavLink to="/admin/users">Manage Users</NavLink>
           </li>
+          <li>
+            <NavLink to="/admin/orders">Manage orders</NavLink>
+          </li>
         </ul>
       </nav>
     </div>

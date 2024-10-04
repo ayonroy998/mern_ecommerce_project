@@ -52,7 +52,7 @@ const Address = () => {
   };
   return (
     <>
-      <div className="container" style={{ marginTop: "90px" }}>
+      <div className="container" style={{ marginTop: "100px" }}>
         <form className="row g-3 p-3 offset-1" onSubmit={onSubmitHandler}>
           <div className="mb-3 col-md-4 was-validated">
             <label htmlFor="fullName" className="form-label">
@@ -183,7 +183,7 @@ const Address = () => {
                 id="invalidCheck2"
                 required
               />
-              <label className="form-check-label" for="invalidCheck2">
+              <label className="form-check-label" htmlFor="invalidCheck2">
                 <b>Agree to terms and conditions</b>
               </label>
             </div>

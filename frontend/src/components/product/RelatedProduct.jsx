@@ -8,14 +8,14 @@ const RelatedProduct = ({ category }) => {
   const { products, addToCart } = useContext(AppContext);
 
   useEffect(() => {
-    console.log("Products:", products); // Debug log for products
-    console.log("Category:", category); // Debug log for category
+    console.log("Products:", products);
+    console.log("Category:", category);
 
     if (products?.length) {
       const filteredProducts = products.filter(
-        (product) => product.category == category // to lowercase ami korini comare er somoy
+        (product) => product.category == category
       );
-      console.log("Filtered Products:", filteredProducts); // Debug log for filtered products
+      console.log("Filtered Products:", filteredProducts);
       setRelatedProducts(filteredProducts);
     }
   }, [category, products]);

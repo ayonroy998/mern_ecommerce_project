@@ -1,16 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { FaUserCircle } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [isTogglerExpanded, setIsTogglerExpanded] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -62,10 +64,36 @@ const Navbar = () => {
     setIsListening((prev) => !prev);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      // Add or remove dark mode class to the body
+      if (newMode) {
+        document.body.classList.add("dark-mode");
+        document.body.classList.remove("light-mode");
+      } else {
+        document.body.classList.add("light-mode");
+        document.body.classList.remove("dark-mode");
+      }
+      return newMode;
+    });
+  };
+
+  /*useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.add("light-mode");
+    }
+    return () => {
+      document.body.classList.remove("dark-mode", "light-mode");
+    };
+  }, [isDarkMode]);*/
+
   return (
     <>
       <nav
-        className="navbar w-100 navbar-expand-md fixed-top"
+        className={"navbar w-100 navbar-expand-md fixed-top"}
         style={{ height: "7vh" }}
       >
         <div
@@ -116,6 +144,57 @@ const Navbar = () => {
                 </a>
               </div>
             </form>
+          </div>
+
+          <div className="d-flex align-items-center">
+            <button
+              className={`toggle-switch ${isDarkMode ? "active" : ""}`}
+              onClick={toggleDarkMode}
+              style={{
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <FaSun
+                style={{
+                  color: isDarkMode ? "gray" : "yellow",
+                  marginRight: "5px",
+                }}
+              />
+              <div
+                className={`toggle ${isDarkMode ? "dark" : "light"}`}
+                style={{
+                  width: "40px",
+                  height: "20px",
+                  borderRadius: "20px",
+                  position: "relative",
+                  transition: "background 0.3s",
+                }}
+              >
+                <div
+                  className={`toggle-circle ${isDarkMode ? "active" : ""}`}
+                  style={{
+                    width: "18px",
+                    height: "18px",
+                    background: "white",
+                    borderRadius: "50%",
+                    position: "absolute",
+                    top: "1px",
+                    left: isDarkMode ? "20px" : "1px",
+                    transition: "left 0.3s",
+                  }}
+                ></div>
+              </div>
+              <FaMoon
+                style={{
+                  color: isDarkMode ? "blue" : "gray",
+                  marginLeft: "5px",
+                }}
+              />
+            </button>
           </div>
 
           <button
@@ -425,6 +504,7 @@ const Navbar = () => {
                 cursor: "pointer",
                 backgroundColor: "#f8f9fa",
                 border: "1px solid #ccc",
+                color:"black"
               }}
             >
               Price: Up to ₹{priceRange[1].toLocaleString("en-IN")}{" "}
@@ -454,7 +534,7 @@ const Navbar = () => {
                   step="50"
                   value={priceRange[1]}
                   onChange={handlePriceChange}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%"}}
                 />
                 <div>₹{priceRange[1].toLocaleString("en-IN")}</div>
               </div>
