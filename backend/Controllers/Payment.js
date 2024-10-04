@@ -18,6 +18,7 @@ export const checkout = async (req, res) => {
     return res.status(400).json({ error: "Invalid amount." });
   }
 
+  //order create
   const request = new paypal.orders.OrdersCreateRequest();
   request.prefer("return=representation");
   request.requestBody({
