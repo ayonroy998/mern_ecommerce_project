@@ -49,7 +49,7 @@ const Checkout = () => {
           },
         }
       );
-
+      console.log(token);
       console.log("Order Response:", orderResponse.data);
 
       const approvalLink = orderResponse.data.links.find(
