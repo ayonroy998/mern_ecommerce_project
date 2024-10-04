@@ -14,8 +14,13 @@ body.dark-mode {
   height: 100vh;
 }
 
+<<<<<<< HEAD
 body {
   overflow-x: hidden !important;
+=======
+.body{
+  overflow-x: hidden;
+>>>>>>> 69e858a1375eb7edd9a9e2ff3051e27b9e8960ee
 }
 
 body::-webkit-scrollbar {
