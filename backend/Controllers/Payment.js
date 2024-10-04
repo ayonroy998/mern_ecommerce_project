@@ -1,4 +1,4 @@
-import { payment } from "../Models/Payment.js"
+import {Payment} from "../Models/payment.js";
 import paypal from "@paypal/checkout-server-sdk";
 import dotenv from "dotenv";
 dotenv.config();
