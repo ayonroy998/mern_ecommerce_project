@@ -1,5 +1,5 @@
 import express from "express";
-import { checkout} from "../Controllers/Payment.js";
+import checkout from "../controllers/payment.js";
 
 const router = express.Router();
 

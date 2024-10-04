@@ -1,4 +1,4 @@
-import { Payment } from "../models/Payment.js";
+import { payment } from "../Models/Payment.js"
 import paypal from "@paypal/checkout-server-sdk";
 import dotenv from "dotenv";
 dotenv.config();
@@ -73,3 +73,4 @@ export const checkout = async (req, res) => {
       .json({ error: "Error creating PayPal order", details: error.message });
   }
 };
+
